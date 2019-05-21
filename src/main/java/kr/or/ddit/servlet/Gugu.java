@@ -8,7 +8,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+
 public class Gugu extends HttpServlet {
+	
+	private Logger logger = LoggerFactory.getLogger(Gugu.class);
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -19,7 +25,13 @@ public class Gugu extends HttpServlet {
 		//localhost/jsp/gugu?param=6
 		String param = req.getParameter("i");
 		String param3 = req.getParameter("j");
-		System.out.println("param : " + param);
+
+		// trace / debug/ info / warn / error
+		logger.debug("i : {}", param);
+		logger.debug("j : {}", param3);
+		
+		
+		
 		int param2 = Integer.parseInt(param);
 		int param4 = Integer.parseInt(param3);
 		
