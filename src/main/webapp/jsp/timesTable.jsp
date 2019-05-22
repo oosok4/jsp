@@ -16,15 +16,20 @@
 </style>
 </head>
 <body>
+<%
+	String param = request.getParameter("i");
+	String param2 = request.getParameter("j");
+	
+%>
 
 <table>
 <% 
-	for(int i = 1; i<10; i++){
+	for(int i = 1; i<Integer.parseInt(param); i++){
 %>
 <tr>
 x<%=i %>
 <% 
-	for(int j = 2; j<10; j++){ 
+	for(int j = 2; j<Integer.parseInt(param2); j++){ 
 %>
 <td><%=j %>x<%=i %>=<%=i*j %></td>
 		
