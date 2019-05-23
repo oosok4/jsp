@@ -9,12 +9,10 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-  
   <context-param>
-  	<param-name>ADMIN</param-name>
-  	<param-value>brown</param-value>
+    <param-name>ADMIN</param-name>
+    <param-value>brown</param-value>
   </context-param>
-  
   <servlet>
     <servlet-name>basicServlet</servlet-name>
     <servlet-class>kr.or.ddit.servlet.BasicServlet</servlet-class>
@@ -48,5 +46,45 @@
   <servlet-mapping>
     <servlet-name>LoginController</servlet-name>
     <url-pattern>/LoginController</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Sum</display-name>
+    <servlet-name>Sum</servlet-name>
+    <servlet-class>kr.or.ddit.sum.Sum</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Sum</servlet-name>
+    <url-pattern>/Sum</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Gob</display-name>
+    <servlet-name>Gob</servlet-name>
+    <servlet-class>kr.or.ddit.gob.Gob</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Gob</servlet-name>
+    <url-pattern>/Gob</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UserController</display-name>
+    <servlet-name>UserController</servlet-name>
+    <servlet-class>kr.or.ddit.user.comtroller.UserController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserController</servlet-name>
+    <url-pattern>/UserController</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>LogoutController</display-name>
+    <servlet-name>LogoutController</servlet-name>
+    <servlet-class>kr.or.ddit.login.controller.LogoutController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LogoutController</servlet-name>
+    <url-pattern>/LogoutController</url-pattern>
   </servlet-mapping>
 </web-app>
