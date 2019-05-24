@@ -16,7 +16,19 @@ public interface IuserDao {
 	* @return
 	* Method 설명 : 사용자 전체 조회
 	 */
-	public List<UserVo> userList();
+	List<UserVo> userList();
+	
+	
+	/**
+	 * 
+	* Method : getUser
+	* 작성자 : PC17
+	* 변경이력 :
+	* @param userId
+	* @return
+	* Method 설명 :사용자 한명 조회
+	 */
+	UserVo getUser(String userId);
 	
 	
 
