@@ -87,4 +87,24 @@
     <servlet-name>LogoutController</servlet-name>
     <url-pattern>/LogoutController</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UserPagingList</display-name>
+    <servlet-name>UserPagingList</servlet-name>
+    <servlet-class>kr.or.ddit.user.comtroller.UserPagingList</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserPagingList</servlet-name>
+    <url-pattern>/UserPagingList</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>LprodController</display-name>
+    <servlet-name>LprodController</servlet-name>
+    <servlet-class>kr.or.ddit.lprod.controller.LprodController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LprodController</servlet-name>
+    <url-pattern>/LprodController</url-pattern>
+  </servlet-mapping>
 </web-app>

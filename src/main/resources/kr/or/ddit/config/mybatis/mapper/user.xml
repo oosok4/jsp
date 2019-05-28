@@ -3,11 +3,30 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="user">
-  <select id="userList" resultType="UserVo">
-    select * from users order by userid
-  </select>
-  
-  <select id = "getUser" resultType="UserVo" parameterType="String">
-  	select * from users where userid = #{userId}
-  </select> 
+	<select id="userList" resultType="UserVo">
+		select * from users order by userid
+	</select>
+
+	<select id="getUser" resultType="UserVo" parameterType="String">
+		select * from users where userid = #{userId}
+	</select>
+
+	<!-- 사용자 페이지 리스트조회 -->
+	
+	<select id="userPagingList" parameterType="pageVo" resultType = "UserVo">
+		<![CDATA[
+		select *
+		from
+		(select a.*, rownum rn    
+		from
+		(select a.*
+		from users a
+		order by userid) a)
+		where rn >=(#{page}-1)*#{pageSize}+1 and rn <= #{page}*#{pageSize}
+		]]>
+	</select>
+	<!-- 	사용자 전체수 조회 -->
+	<select id="usersCnt" resultType="int">
+	select count(*) from users
+	</select>
 </mapper>

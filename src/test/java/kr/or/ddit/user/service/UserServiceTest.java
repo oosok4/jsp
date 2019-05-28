@@ -3,8 +3,13 @@ package kr.or.ddit.user.service;
 import static org.junit.Assert.*;
 
 import java.util.List;
+import java.util.Map;
 
 import junit.framework.Assert;
+import kr.or.ddit.lprod.model.LprodVo;
+import kr.or.ddit.lprod.service.IlprodService;
+import kr.or.ddit.lprod.service.LprodServiceImpl;
+import kr.or.ddit.paging.model.PageVo;
 import kr.or.ddit.user.dao.IuserDao;
 import kr.or.ddit.user.dao.UserDaoImpl;
 import kr.or.ddit.user.model.UserVo;
@@ -24,6 +29,8 @@ public class UserServiceTest {
 	
 	private IuserService userService;
 	
+	
+	
 	@BeforeClass
 	public static void beforeClass(){
 		logger.debug("boforeClass");
@@ -34,6 +41,7 @@ public class UserServiceTest {
 	@Before
 	public void setup(){
 		logger.debug("setup");
+		userService = new UserServiceImpl();
 	}
 	
 	@After
@@ -72,6 +80,60 @@ public class UserServiceTest {
 		/***Then***/
 		logger.debug("uv : {}",uv);
 
+	}
+	
+	@Test
+	public void userPagingList(){
+		/***Given***/
+		PageVo pageVo = new PageVo(1,10);
+
+		/***When***/
+		Map<String, Object>resultMap = userService.userpagingList(pageVo);
+		List<UserVo> userList = (List<UserVo>) resultMap.get("userList");
+		//int usersCnt = (Integer)resultMap.get("usersCnt");
+		int paginationSize = (Integer) resultMap.get("paginationSize");
+		
+		logger.debug("pagination");
+			
+		/***Then***/
+		
+		
+		assertEquals(11, paginationSize);
+		
+		
+	}
+	
+	@Test
+	public void ceilTest(){
+		/***Given***/
+
+		int usersCnt = 105;
+		int pageSize = 10;
+		/***When***/
+		double paginationSize = Math.ceil((double)usersCnt/pageSize);	
+		logger.debug("pagination : {}",paginationSize);
+
+		/***Then***/
+		assertEquals(11, (int)paginationSize);
+
+	}
+	
+	private IlprodService service;
+	
+	
+	@Test
+	public void lprodList(){
+		/***Given***/
+
+		service = new LprodServiceImpl();
+		/***When***/
+		List<LprodVo> lprodList = service.lprodList();
+
+		
+		/***Then***/
+		logger.debug("lprodList : {}",lprodList);
+
+		
 	}
 
 }

@@ -1,4 +1,4 @@
-package kr.or.ddit.user.comtroller;
+package kr.or.ddit.user.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
