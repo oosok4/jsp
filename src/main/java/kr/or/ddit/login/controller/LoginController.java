@@ -110,6 +110,10 @@ public class LoginController extends HttpServlet {
 			response.addCookie(remembermeCookie);
 			
 			
+			for(Cookie cookie : request.getCookies()){
+				logger.debug("cookie : {},{}",cookie.getName(), cookie.getValue());
+			}
+			
 			//session에 사용자 정보를 넣어준다 (사용빈도가 높기 때무네)
 			HttpSession session =  request.getSession();
 			session.setAttribute("USER_INFO", new UserVo("브라운", "brown", "곰"));
