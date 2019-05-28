@@ -5,12 +5,14 @@ import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.or.ddit.user.model.UserVo;
+import kr.or.ddit.util.CookieUtil;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,12 +41,21 @@ public class LoginController extends HttpServlet {
 			.getLogger(LoginController.class);
 	
 	
+	
+	
 	private static final long serialVersionUID = 1L;
        
 	
 	// 사용자 로그인 화면 요청 처리
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		logger.debug("LoginController doGet()");
+		
+		
+		
+		
+		for(Cookie cookie : request.getCookies()){
+			logger.debug("cookie : {}, {}",cookie,cookie.getValue());
+		}
 		
 		
 		//login 화면을 처리해줄 무언가에게 위임
@@ -67,6 +78,7 @@ public class LoginController extends HttpServlet {
 	
 	//로그인 요청을 처리 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		logger.debug("parameter rememberme : {}",request.getParameter("rememberme"));
 		logger.debug("parameter userId : {}",request.getParameter("userId"));
 		logger.debug("parameter password : {}",request.getParameter("password"));
 		
@@ -81,6 +93,22 @@ public class LoginController extends HttpServlet {
 		
 		//일치하면 ... : main화면으로 이동한다.
 		if(userId.equals("brown")&&password.equals("brown1234")){
+			
+			//remember 파라미터가 존재할 경우 userId, rememberme cookie 설정해준다
+			//remember 파라미터가 존재하지 않을 경우 userId, rememberme cookie 삭제한다.
+			int cookieMaxAge =0;
+			if(request.getParameter("rememberme")!=null)
+				cookieMaxAge=60*60*24*30;
+			
+			Cookie userIdCookie = new Cookie("userId",userId);
+			userIdCookie.setMaxAge(cookieMaxAge);
+				
+			Cookie remembermeCookie = new Cookie("rememberme","true");
+			remembermeCookie.setMaxAge(cookieMaxAge);
+			
+			response.addCookie(userIdCookie);
+			response.addCookie(remembermeCookie);
+			
 			
 			//session에 사용자 정보를 넣어준다 (사용빈도가 높기 때무네)
 			HttpSession session =  request.getSession();
