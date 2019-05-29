@@ -15,8 +15,6 @@
 <script src="<%=request.getContextPath()%>/js/js.cookie.js"></script> 
 </head>
 <script>
-	
-
 	$(document).ready(function(){
 		//문서 로딩이 완료되고 나서 실행되는 부분
 		//rememberme checkbox
@@ -65,8 +63,7 @@
 	function deleteCookie(cookieName){
 		setCookie(cookieName, "",-5);
 	}
-
-
+	
 	//쿠키 이름에 해당하는 쿠키 값을 조회...
 	function getCookie(cookieName){
 	
