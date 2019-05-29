@@ -86,7 +86,7 @@
 				}else {
 			%>
 			<li>
-				<a href="<%=request.getContextPath()%>/lprodList?page=<%=pageVo.getPage() - 1%>&pageSize=<%=pageVo.getPageSize()%>">«</a>
+				<a href="${pageContext.request.contextPath}/lprodList?page=<%=pageVo.getPage() - 1%>&pageSize=<%=pageVo.getPageSize()%>">«</a>
 			</li>
 			<%
 				}
@@ -109,7 +109,7 @@
 				} else {
 			%>
 			<li><a
-				href="<%=request.getContextPath()%>/lprodList?page=<%=i%>&pageSize=<%=pageVo.getPageSize()%>"><%=i%></a>
+				href="${pageContext.request.contextPath}/lprodList?page=<%=i%>&pageSize=<%=pageVo.getPageSize()%>"><%=i%></a>
 			</li>
 			<%
 				}
@@ -126,7 +126,7 @@
 				} else {
 			%>
 			<li><a
-				href="<%=request.getContextPath()%>/lprodList?page=<%=pageVo.getPage() + 1%>&pageSize=<%=pageVo.getPageSize()%>">»</a>
+				href="${pageContext.request.contextPath}/lprodList?page=<%=pageVo.getPage() + 1%>&pageSize=<%=pageVo.getPageSize()%>">»</a>
 			</li>
 			<%
 				}
