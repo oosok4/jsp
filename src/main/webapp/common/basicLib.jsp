@@ -5,3 +5,5 @@
 <script src="${pageContext.request.contextPath}/bootstrap/js/css/bootstrap.js"></script><!-- Custom styles for this template -->
 <link href="${pageContext.request.contextPath}/css/blog.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/dashboard.css" rel="stylesheet">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

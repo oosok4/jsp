@@ -6,6 +6,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,9 +21,29 @@
 
 
 <title>Jsp</title>
+<style>
+	.userTr:hover{
+		cursor : pointer;
+	}
+</style>
 
 
 <%@include file="/common/basicLib.jsp"%>
+<script>
+	$(document).ready(function(){
+		$(".userTr").on("click",function(){
+			console.log("userTr click");
+			
+			var userId = $(this).find(".userId").text();
+			$("#userId").val(userId);
+			
+			//#frm을 이용하여 submit();
+			$("#frm").submit();
+			
+		});
+				
+	})
+</script>
 </head>
 
 <body>
@@ -45,7 +66,14 @@
 
 						<div class="row">
 							<div class="col-sm-8 blog-main">
-								<h2 class="sub-header">userList</h2>
+								<h2 class="sub-header">사용자</h2>
+								
+								<form id="frm" action="${ pageContext.request.contextPath}/user" method="get">
+									<input type="hidden" id="userId" name="userId"/>								
+								
+								</form>
+								
+								
 								<div class="table-responsive">
 									<table class="table table-striped">
 										<tr>
@@ -59,8 +87,8 @@
 													.getAttribute("userList");
 										%>
 										<c:forEach items="${userList }" var="user" varStatus="status">
-											<tr>
-												<td>${status.index}/${status.count}/${user.userId }</td>
+											<tr class="userTr" data-userid="${user.userId } data-name=">
+												<td class="userId">${user.userId }</td>
 												<td>${user.name }</td>
 												<td>${user.alias }</td>
 												<td></td>
