@@ -60,7 +60,7 @@
 										%>
 										<c:forEach items="${userList }" var="user" varStatus="status">
 											<tr>
-												<td>${status.index}/${status.count}/ ${user.userId }</td>
+												<td>${status.index}/${status.count}/${user.userId }</td>
 												<td>${user.name }</td>
 												<td>${user.alias }</td>
 												<td></td>
@@ -79,58 +79,48 @@
 	 -->
 								<div class="text-center">
 									<ul class="pagination">
-									<% PageVo pageVo = (PageVo) request.getAttribute("pageVo");%>
+										<%
+											PageVo pageVo = (PageVo) request.getAttribute("pageVo");
+										%>
 
-									<!--  
-										<%
-										if (pageVo.getPage() == 1) {
-										
-										%>
+										<!--  
+										<%if (pageVo.getPage() == 1) {%>
 										<li class="disabled"><span>«</span></li>
-										<%
-											} else {
-										%>
+										<%} else {%>
 										<li><a
 											href="${pageContext.request.contextPath}/userPagingList?page=<%=pageVo.getPage() - 1%>&pageSize=<%=pageVo.getPageSize()%>">«</a>
 										</li>
-										<%
-											}
-										%>
+										<%}%>
 										-->
 										<c:choose>
 											<c:when test="${pageVo.page == 1 }">
 												<li class="disabled"><span>«</span></li>
 											</c:when>
 											<c:otherwise>
-												<li><a href="${pageContext.request.contextPath}/userPagingList?page=${pageVo.page - 1}&pageSize=${pageVo.pageSize } ">«</a></li>
+												<li><a
+													href="${pageContext.request.contextPath}/userPagingList?page=${pageVo.page - 1}&pageSize=${pageVo.pageSize } ">«</a></li>
 											</c:otherwise>
-											
+
 										</c:choose>
 
-										
-										 <!--  
-										<%
-											//내가 현재 몇번쨰 페이지에 있는가?
 
-											//PageVo pageVo  = (PageVo)request.getAttribute("pageVo");
-											int paginationSize = (Integer) request.getAttribute("paginationSize");
-											for (int i = 1; i <= paginationSize; i++) {
-										%>
-										<%
-											if (pageVo.getPage() == i) {
-										%>
+										<!--  
+										<%//내가 현재 몇번쨰 페이지에 있는가?
+
+			//PageVo pageVo  = (PageVo)request.getAttribute("pageVo");
+			int paginationSize = (Integer) request
+					.getAttribute("paginationSize");
+			for (int i = 1; i <= paginationSize; i++) {%>
+										<%if (pageVo.getPage() == i) {%>
 										<li class="active"><span> <%=i%></span></li>
-										<%
-											} else {
-										%>
+										<%} else {%>
 										<li><a
 											href="${pageContext.request.contextPath}/userPagingList?page=<%=i%>&pageSize=<%=pageVo.getPageSize()%>"><%=i%></a>
 										</li>
-										<%
-											}
-										}
-										%>
+										<%}
+			}%>
 										-->
+
 										<c:forEach begin="1" end="${paginationSize }" var="i">
 											<c:choose>
 												<c:when test="${pageVo.page == i }">
@@ -143,33 +133,28 @@
 												</c:otherwise>
 											</c:choose>
 										</c:forEach>
-										
+
 										<!-- 
-										<%
-											if (pageVo.getPage() == pageVo.getPageSize() + 1) {
-										%>
+										<%if (pageVo.getPage() == pageVo.getPageSize() + 1) {%>
 										<li class="disabled"><span>»</span></li>
-										<%
-											} else {
-										%>
+										<%} else {%>
 										<li>
 										<a href="${pageContext.request.contextPath}/userPagingList?page=<%=paginationSize + 1%>&pageSize=<%=paginationSize%>">»</a>
 										</li>
-										<%
-											}
-										%>
+										<%}%>
 										-->
 										<c:choose>
 											<c:when test="${pageVo.page == paginationSize }">
 												<li class="disabled"><span>»</span></li>
 											</c:when>
 											<c:otherwise>
-												<li><a href="${pageContext.request.contextPath}/userPagingList?page=${pageVo.page + 1}&pageSize=${pageVo.pageSize }">»</a></li>
+												<li><a
+													href="${pageContext.request.contextPath}/userPagingList?page=${pageVo.page + 1}&pageSize=${pageVo.pageSize }">»</a></li>
 											</c:otherwise>
-											
+
 										</c:choose>
-										
-										
+
+
 
 									</ul>
 								</div>
