@@ -4,14 +4,24 @@ public class UserVo {
 	private String name;
 	private String userId;
 	private String alias;
+	private String pass;
 	
-	public UserVo(String name, String userId, String alias) {
+	public UserVo(String name, String userId, String alias, String pass) {
 		super();
 		this.name = name;
 		this.userId = userId;
 		this.alias = alias;
+		this.pass = pass;
 	}
 	
+	public String getPass() {
+		return pass;
+	}
+
+	public void setPass(String pass) {
+		this.pass = pass;
+	}
+
 	public UserVo(){
 		
 	}
@@ -42,7 +52,7 @@ public class UserVo {
 	
 	@Override
 	public String toString() {
-		return "UserVo [name=" + name + ", userId=" + userId + ", alias="
+		return "UserVo [name=" + name + ", pass=" + pass + ", userId=" + userId + ", alias="
 				+ alias + "]";
 	}
 

@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.or.ddit.user.model.UserVo;
+import kr.or.ddit.user.service.IuserService;
+import kr.or.ddit.user.service.UserServiceImpl;
 import kr.or.ddit.util.CookieUtil;
 
 import org.slf4j.Logger;
@@ -40,7 +42,12 @@ public class LoginController extends HttpServlet {
 	private static final Logger logger = LoggerFactory
 			.getLogger(LoginController.class);
 	
+	private IuserService service;
 	
+	@Override
+	public void init() throws ServletException {
+		service = new UserServiceImpl();
+	}
 	
 	
 	private static final long serialVersionUID = 1L;
@@ -92,6 +99,7 @@ public class LoginController extends HttpServlet {
 		//--> userId : brown이고 password : brown1234라는 값일떄 통과 이외의 값은 불일치
 		
 		//일치하면 ... : main화면으로 이동한다.
+		/*
 		if(userId.equals("brown")&&password.equals("brown1234")){
 			
 			//remember 파라미터가 존재할 경우 userId, rememberme cookie 설정해준다
@@ -134,6 +142,48 @@ public class LoginController extends HttpServlet {
 				request.getRequestDispatcher("/login/login.jsp").forward(request, response);
 				//response.sendRedirect(request.getContextPath() + "/login");
 		}
+		*/
+		UserVo userVo = service.getUser(userId);
+		System.out.println(userVo);
+		if(service.getUser(userId)!=null){
+			//UserVo userVo = service.getUser(userId);
+			if(userVo.getPass().equals(password)){
+				
+				
+				int cookieMaxAge =0;
+				if(request.getParameter("rememberme")!=null)
+					cookieMaxAge=60*60*24*30;
+				
+				Cookie userIdCookie = new Cookie("userId",userId);
+				userIdCookie.setMaxAge(cookieMaxAge);
+					
+				Cookie remembermeCookie = new Cookie("rememberme","true");
+				remembermeCookie.setMaxAge(cookieMaxAge);
+				
+				response.addCookie(userIdCookie);
+				response.addCookie(remembermeCookie);
+				
+				
+				for(Cookie cookie : request.getCookies()){
+					logger.debug("cookie : {},{}",cookie.getName(), cookie.getValue());
+				}
+				
+				HttpSession session =  request.getSession();
+				session.setAttribute("USER_INFO", userVo);
+				
+				RequestDispatcher rd = request.getRequestDispatcher("/main.jsp");
+				rd.forward(request, response);
+			}
+		}else{ //아이디 혹은 비밀번호 잘못 입력. -> 다시 로그인 화면으로 이동.
+			//로그인 화면으로 이동  : localhost/jsp/login
+			// 현상황에서 /jsp/login url로 dispatch 방식으로 위임 불가
+			// request.getMethod(); //GET, POST
+		
+			request.getRequestDispatcher("/login/login.jsp").forward(request, response);
+			//response.sendRedirect(request.getContextPath() + "/login");
+		}
+		
 	}
+	
 
 }

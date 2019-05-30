@@ -47,7 +47,7 @@
 		<div class="blog-post">
 			<h2 class="blog-post-title">JSP</h2>
 			<p class="blog-post-meta">
-				2019.05.28, room 204
+				2019.05.30, room 204
 			</p>
 
 			<p>jsp를 통한 웹 프로그래밍 학습</p>
