@@ -17,26 +17,26 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <link rel="icon" href="../../favicon.ico">
- 
+
 
 
 <title>Jsp</title>
 
 
-<%@include file="/common/basicLib.jsp" %>
+<%@include file="/common/basicLib.jsp"%>
 </head>
 
 <body>
 
 
 	<!--  header -->
-	<%@include file="/common/header.jsp" %>
+	<%@include file="/common/header.jsp"%>
 	<div class="container-fluid">
 		<div class="row">
 
-<!-- 				left -->
-<%@include file="/common/left.jsp" %>
-			
+			<!-- 				left -->
+			<%@include file="/common/left.jsp"%>
+
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
 
@@ -54,88 +54,66 @@
 											<th>lprod_gu</th>
 											<th>lprod_nm</th>
 										</tr>
-										<%
-											List<LprodVo> lprodList = (List<LprodVo>) request
-													.getAttribute("lprodList");
-										%>
 										
-										<%
-											for (LprodVo lprod : lprodList) {
-										%>
-										<tr>
-											<td><%=lprod.getLPROD_ID()%></td>
-											<td><%=lprod.getLPROD_GU()%></td>
-											<td><%=lprod.getLPROD_NM()%></td>
-										</tr>
-										<%
-											}
-										%>
+
+										<c:forEach items="${lprodList }" var="lprod">
+											<tr>
+												<td>${lprod.LPROD_ID }</td>
+												<td>${lprod.LPROD_GU }</td>
+												<td>${lprod.LPROD_NM }</td>
+											</tr>
+										</c:forEach>
 									</table>
 								</div>
 
 								<a class="btn btn-default pull-right">사용자 등록</a>
 
 								<div class="text-center">
-		<ul class="pagination">
-			<%
-				PageVo pageVo = (PageVo) request.getAttribute("pageVo");
-			%>
-			<%
-				if (pageVo.getPage() == 1){
-			%>
-			<li class="disabled"><span>«</span></li>
-			<%
-				}else {
-			%>
-			<li>
-				<a href="${pageContext.request.contextPath}/lprodList?page=<%=pageVo.getPage() - 1%>&pageSize=<%=pageVo.getPageSize()%>">«</a>
-			</li>
-			<%
-				}
-			%>
+									<ul class="pagination">
+									
+										
+										<c:choose>
+											<c:when test="${pageVo.page eq 1 }">
+												<li class="disabled"><span>«</span></li>
+											</c:when>
+											<c:otherwise>
+												<li><a
+													href="${pageContext.request.contextPath}/lprodList?page=${pageVo.page - 1 }&pageSize=${pageVo.pageSize}">«</a>
+												</li>
+											</c:otherwise>
+											
+										</c:choose>
+										
+										
+										
+										<c:forEach begin="1" end="${paginationSize }" var="i">
+											<c:choose>
+											<c:when test="${pageVo.page eq i }">
+											<li class="active"><span> ${i }</span></li>
+											</c:when>
+											<c:otherwise>
+											<li><a
+												href="${pageContext.request.contextPath}/lprodList?page=${i }&pageSize=${pageVo.pageSize }">${i }</a>
+											</li>
+											</c:otherwise>
+											</c:choose>
+										</c:forEach>
+										
+										
+										<c:choose>
+											<c:when test="${pageVo.page eq paginationSize }">
+												<li class="disabled"><span>»</span></li>
+											</c:when>
+											<c:otherwise>
+												<li><a
+													href="${pageContext.request.contextPath}/lprodList?page=${pageVo.page +1 }&pageSize=${pageVo.pageSize }">»</a>
+												</li>
+											</c:otherwise>
+										
+										</c:choose>
 
-
-			<%
-				//내가 현재 몇번쨰 페이지에 있는가?
-
-				//PageVo pageVo  = (PageVo)request.getAttribute("pageVo");
-				int paginationSize = (Integer) request
-						.getAttribute("paginationSize");
-				for (int i = 1; i <= paginationSize; i++) {
-			%>
-			<%
-				if (pageVo.getPage() == i) {
-			%>
-			<li class="active"><span> <%=i%></span></li>
-			<%
-				} else {
-			%>
-			<li><a
-				href="${pageContext.request.contextPath}/lprodList?page=<%=i%>&pageSize=<%=pageVo.getPageSize()%>"><%=i%></a>
-			</li>
-			<%
-				}
-			%>
-			<%
-				}
-			%>
-
-			<%
-				if (pageVo.getPage() == pageVo.getPageSize() + 1) {
-			%>
-			<li class="disabled"><span>»</span></li>
-			<%
-				} else {
-			%>
-			<li><a
-				href="${pageContext.request.contextPath}/lprodList?page=<%=pageVo.getPage() + 1%>&pageSize=<%=pageVo.getPageSize()%>">»</a>
-			</li>
-			<%
-				}
-			%>
-
-				</ul>
-			</div>
+									</ul>
+								</div>
 							</div>
 						</div>
 					</div>
