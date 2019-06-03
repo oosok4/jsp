@@ -1,16 +1,21 @@
 package kr.or.ddit.user.controller;
 
+import java.io.File;
 import java.io.IOException;
-import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.UUID;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
+import kr.or.ddit.servlet.util.partUtil;
 import kr.or.ddit.user.model.UserVo;
 import kr.or.ddit.user.service.IuserService;
 import kr.or.ddit.user.service.UserServiceImpl;
@@ -22,6 +27,7 @@ import org.slf4j.LoggerFactory;
  * Servlet implementation class UserFormController
  */
 @WebServlet("/userForm")
+@MultipartConfig(maxFileSize = 1024 * 1024 * 3, maxRequestSize = 1024 * 1024 * 15)
 public class UserFormController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -60,6 +66,8 @@ public class UserFormController extends HttpServlet {
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
+		// profile파일 업로드 처리
+
 		UserVo userVo = null;
 
 		try {
@@ -74,6 +82,34 @@ public class UserFormController extends HttpServlet {
 
 		// 등록된 사용자가 아닌 경우 --> 정상입력이 가능한 상황
 		if (dbuser == null) {
+
+			// profile 파일 업로드 처리
+
+			Part profile = req.getPart("profile");
+
+			if (profile.getSize() > 0) {
+				// 실제파일명
+				String contentDisposition = profile
+						.getHeader("content-disPosition");
+				String filename = partUtil.getFileName(contentDisposition);
+				String ext = partUtil.getExt(filename);
+
+				// partUtil.checkUploadFolder(yyyy, mm);
+
+				String uploadPath = partUtil.getUploadPath();
+				File uploadFolder = new File(uploadPath);
+				if (uploadFolder.exists()) {
+					// 파일 디스크에 쓰기
+					String filePath = uploadPath + File.separator
+							+ UUID.randomUUID().toString() + ext;
+					userVo.setPath(filePath);
+					userVo.setFilename(filename);
+
+					profile.write(filePath);
+					profile.delete();
+				}
+			}
+
 			int insertCnt = service.insertUser(userVo);
 
 			if (insertCnt == 1)
@@ -83,22 +119,6 @@ public class UserFormController extends HttpServlet {
 			req.setAttribute("msg", "이미 존재하는 사용자입니다.");
 			doGet(req, resp);
 		}
-
-		// 존재하지 않을경우{
-
-		// userService 객체를 통해 insertUser(userVo);
-
-		// 정상적으로 입력이 된 경우
-		// 사용자페이징 리스트 1페이지로 이동
-
-		// 정상적으로 입력되지 않은 경우
-		// 사용자 등록페이지로 이동, 사용자가 입력한 값을 input에 넣어준다.
-		// }
-
-		// 존재할 경우
-		// 社용자 등록페이지로 이동, 사용자가 입력한 값을 input에 넣어준다.
-		// 이미 존재하는 userId입니다.(alert or text로 표시)
-
 	}
 
 }

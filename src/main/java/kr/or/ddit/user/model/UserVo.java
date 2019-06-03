@@ -16,7 +16,7 @@ public class UserVo {
 	private String filename;
 
 	public UserVo(String name, String userId, String alias, String pass,
-			String addr1, String addr2, String zipcd, Date birth) {
+			String addr1, String addr2, String zipcd, Date birth2) {
 		super();
 		this.name = name;
 		this.userId = userId;
@@ -25,14 +25,13 @@ public class UserVo {
 		this.addr1 = addr1;
 		this.addr2 = addr2;
 		this.zipcd = zipcd;
-		this.birth = birth;
+		this.birth = birth2;
 	}
-	
-	public String getBirthStr(){
+
+	public String getBirthStr() {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		return sdf.format(this.birth);
 	}
-	
 
 	public String getAddr1() {
 		return addr1;

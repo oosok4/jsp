@@ -4,16 +4,18 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="user">
 	<select id="userList" resultType="UserVo">
-		select * from users order by userid
+		select * from users order by
+		userid
 	</select>
 
 	<select id="getUser" resultType="UserVo" parameterType="String">
-		select * from users where userid = #{userId}
+		select *
+		from users where userid = #{userId}
 	</select>
 
 	<!-- 사용자 페이지 리스트조회 -->
-	
-	<select id="userPagingList" parameterType="pageVo" resultType = "UserVo">
+
+	<select id="userPagingList" parameterType="pageVo" resultType="UserVo">
 		<![CDATA[
 		select *
 		from
@@ -25,36 +27,42 @@
 		where rn >=(#{page}-1)*#{pageSize}+1 and rn <= #{page}*#{pageSize}
 		]]>
 	</select>
-	<!-- 	사용자 전체수 조회 -->
+	<!-- 사용자 전체수 조회 -->
 	<select id="usersCnt" resultType="int">
-	select count(*) from users
+		select count(*) from users
 	</select>
-	
+
 	<!-- 사용자 등록 -->
-	<insert id = "insertUser" parameterType="userVo">
-	insert into users
-	values(#{userId},#{name}, #{alias},#{pass},#{addr1},#{addr2},#{zipcd},#{birth},'','')
-	
+	<insert id="insertUser" parameterType="userVo">
+		insert into users
+		values(#{userId},#{name}, #{alias},#{pass},#{addr1},#{addr2},#{zipcd},#{birth},#{path,
+		jdbcType=VARCHAR},#{filename, jdbcType=VARCHAR})
+
 	</insert>
-	
+
 	<!-- 사용자 삭제 -->
 	<delete id="deleteUser" parameterType="string">
 		delete users
-		where userid=#{userId}
+		where
+		userid=#{userId}
 	</delete>
-	
+
 	<update id="updateUser" parameterType="userVo">
-		update users 
+		update users
 		set
 		name = #{name},
 		ALIAS = #{alias},
 		PASS = #{pass},
 		ADDR1= #{addr1},
-		ADDR2= #{addr2},
+		ADDR2=
+		#{addr2},
 		ZIPCD= #{zipcd},
 		BIRTH=#{birth}
-		where userid=#{userid}
+		<if test="path !=null">
+			,path = #{path}, filename = #{filename}
+		</if> 
+		where userid=#{userId}
 	</update>
-	
-	
+
+
 </mapper>

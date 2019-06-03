@@ -110,8 +110,8 @@
 							<div class="col-sm-8 blog-main">
 								<h2 class="sub-header">회원정보 수정</h2>
 
-								<form id="frm" class="form-horizontal" role="form" action="${pageContext.request.contextPath }/userForm"
-								 method="post">
+								<form id="frm" class="form-horizontal" role="form" action="${pageContext.request.contextPath }/userAdmit"
+								 method="post" enctype="multipart/form-data">
 
 									<div class="form-group">
 										<label for="userNm" class="col-sm-3 control-label">사용자
@@ -120,7 +120,13 @@
 											<img src="${pageContext.request.contextPath }/profile?userId=${userVo.userId}"/>  
 										</div>
 									</div>
-
+									<div class="form-group">
+										<label for="userNm" class="col-sm-3 control-label">사용자
+											사진</label>
+										<div class="col-sm-8">
+											<input type="file" id="filename" name="profile" />
+										</div>
+									</div>
 
 									<div class="form-group">
 										<label for="userId" class="col-sm-3 control-label">사용자아이디</label>
@@ -137,7 +143,6 @@
 												placeholder="사용자 비밀번호" value="${userVo.pass }">
 										</div>
 									</div>
-
 
 									<div class="form-group">
 										<label for="userNm" class="col-sm-3 control-label">사용자

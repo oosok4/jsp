@@ -34,7 +34,15 @@ public class ProfileController extends HttpServlet {
 		
 		//path정보로 file을 읽어들여서
 		ServletOutputStream sos = response.getOutputStream();
-		File file = new File( user.getPath());
+		String filePath = null;
+		if(user.getPath() != null)
+			filePath = user.getPath();
+		
+		else 
+			filePath = getServletContext().getRealPath("/img/no_image.gif");
+			
+		File file = new File(filePath);
+		
 		FileInputStream fis = new FileInputStream(file);
 		//int len = 0;
 		byte[] buffer = new byte[512];
