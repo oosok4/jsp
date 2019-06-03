@@ -21,41 +21,44 @@ import kr.or.ddit.user.service.UserServiceImpl;
 @WebServlet("/userPagingList")
 public class UserPagingList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
 	private IuserService service;
-   
+
 	@Override
 	public void init() throws ServletException {
 		service = new UserServiceImpl();
 	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html; charset=utf-8");
 		String page = request.getParameter("page");
 		String pageSize = request.getParameter("pageSize");
-		
-		
-		if(page==null||pageSize == null){
+
+		if (page == null || pageSize == null) {
 			page = "1";
 			pageSize = "10";
 		}
-		PageVo pageVo = new PageVo(Integer.parseInt(page),Integer.parseInt(pageSize));
-		
-		Map<String, Object>resultMap = service.userpagingList(pageVo);
+		PageVo pageVo = new PageVo(Integer.parseInt(page),
+				Integer.parseInt(pageSize));
+
+		Map<String, Object> resultMap = service.userpagingList(pageVo);
 		List<UserVo> userList = (List<UserVo>) resultMap.get("userList");
-		int pagenationSize = (Integer)resultMap.get("paginationSize");
-		
-		//request.setAttribute("pagingList", service.userpagingList(pageVo));
-		
+		int pagenationSize = (Integer) resultMap.get("paginationSize");
+
+		// request.setAttribute("pagingList", service.userpagingList(pageVo));
+
 		request.setAttribute("userList", userList);
 		request.setAttribute("paginationSize", pagenationSize);
 		request.setAttribute("pageVo", pageVo);
-		
-		
-		request.getRequestDispatcher("/user/pagingList.jsp").forward(request, response);
+
+		request.getRequestDispatcher("/user/pagingList.jsp").forward(request,
+				response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+
 	}
 
 }

@@ -40,4 +40,29 @@ public interface IuserService {
 	 */
 	Map<String, Object> userpagingList(PageVo pageVo);
 
+	
+	/**
+	 * 
+	* Method : insertUser
+	* 작성자 : PC17
+	* 변경이력 :
+	* @param userVo
+	* Method 설명 :
+	 */
+	int insertUser(UserVo userVo);
+	
+	
+	/**
+	 * 
+	* Method : updateUser
+	* 작성자 : PC17
+	* 변경이력 :
+	* @param userVo
+	* @return
+	* Method 설명 :
+	 */
+	int updateUser(UserVo userVo);
+	
+	
+
 }

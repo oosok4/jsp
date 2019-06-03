@@ -2,6 +2,8 @@ package kr.or.ddit.user.dao;
 
 import static org.junit.Assert.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import kr.or.ddit.lprod.dao.IlprodDao;
@@ -9,7 +11,9 @@ import kr.or.ddit.lprod.dao.LprodDaoImpl;
 import kr.or.ddit.lprod.model.LprodVo;
 import kr.or.ddit.paging.model.PageVo;
 import kr.or.ddit.user.model.UserVo;
+import kr.or.ddit.user.service.IuserService;
 
+import org.hamcrest.core.IsEqual;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -21,6 +25,8 @@ import org.slf4j.LoggerFactory;
 public class UserDaoTest {
 	private static final Logger logger = LoggerFactory
 			.getLogger(UserDaoTest.class);
+	
+	private IuserDao userDao;
 	
 	
 	//junit 실행순서
@@ -38,11 +44,12 @@ public class UserDaoTest {
 		logger.debug("boforeClass");
 	}
 	
-	IuserDao userDao = new UserDaoImpl();
+	
 	
 	@Before
 	public void setup(){
 		logger.debug("setup");
+		userDao = new UserDaoImpl();
 	}
 	
 	@After
@@ -155,6 +162,38 @@ public class UserDaoTest {
 	}
 	
 	
+	/**
+	 * 
+	* Method : insertUserTest
+	* 작성자 : PC17
+	* 변경이력 :
+	* Method 설명 : 사용자 등록 테스트
+	 * @throws ParseException 
+	 */
+	@Test
+	public void insertUserTest() {
+		/***Given***/
+		//사용자정보를 담고 있는 vo객체 준비
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		UserVo userVo =null;
+		
+		try {
+			userVo = new UserVo("민호", "oosok2", "마이노", "1234", "인천", "대전", "5432", sdf.parse("1993-10-08"));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		
+		/***When***/
+		int result = userDao.insertUser(userVo);
+		
+
+		/***Then***/
+		assertEquals(1, result);
+		
+		userDao.deleteUser(userVo.getUserId());
+
+	}
 }
 
 

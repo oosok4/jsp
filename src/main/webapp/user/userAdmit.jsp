@@ -26,6 +26,11 @@
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
 	$(document).ready(function(){
+	$("#userId").text();
+	$("#name").text();
+	$("#alias").text();
+	$("#addr1").text();
+	$("#addr2").text();
 		
 		var msg = '${msg}';
 		if(msg != '')
@@ -66,7 +71,7 @@
 	});
 	
 	function dataInit(){
-		$("#userId").val("userTest");
+		
 		$("#name").val("대덕인");
 		$("#alias").val("마이노");
 		$("#addr1").val("용계동 73-22");
@@ -103,7 +108,7 @@
 
 						<div class="row">
 							<div class="col-sm-8 blog-main">
-								<h2 class="sub-header">사용자 등록</h2>
+								<h2 class="sub-header">회원정보 수정</h2>
 
 								<form id="frm" class="form-horizontal" role="form" action="${pageContext.request.contextPath }/userForm"
 								 method="post">
@@ -112,7 +117,7 @@
 										<label for="userNm" class="col-sm-3 control-label">사용자
 											사진</label>
 										<div class="col-sm-8">
-											<input type="file" id="filename" name="filename" />
+											<img src="${pageContext.request.contextPath }/profile?userId=${userVo.userId}"/>  
 										</div>
 									</div>
 
@@ -121,7 +126,7 @@
 										<label for="userId" class="col-sm-3 control-label">사용자아이디</label>
 										<div class="col-sm-9">
 											<input type="text" class="form-control" id="userId"
-												name="userId" placeholder="사용자 아이디" value="${param.userId }">
+												name="userId" placeholder="사용자 아이디" value="${userVo.userId }" readonly/>
 										</div>
 									</div>
 
@@ -129,7 +134,7 @@
 										<label for="userNm" class="col-sm-3 control-label">비밀번호</label>
 										<div class="col-sm-9">
 											<input type="password" class="form-control" id="pass" name="pass"
-												placeholder="사용자 비밀번호" value="${param.pass }">
+												placeholder="사용자 비밀번호" value="${userVo.pass }">
 										</div>
 									</div>
 
@@ -139,7 +144,7 @@
 											이름</label>
 										<div class="col-sm-9">
 											<input type="text" class="form-control" id="name" name="name"
-												placeholder="사용자 이름" value="${param.name }">
+												placeholder="사용자 이름" value="${userVo.name }">
 										</div>
 									</div>
 
@@ -147,7 +152,7 @@
 										<label for="userNm" class="col-sm-3 control-label">별명</label>
 										<div class="col-sm-9">
 											<input type="text" class="form-control" id="alias"
-												name="alias" placeholder="사용자 별명" value="${param.alias }">
+												name="alias" placeholder="사용자 별명" value="${userVo.alias }">
 										</div>
 									</div>
 
@@ -155,7 +160,7 @@
 										<label for="userNm" class="col-sm-3 control-label">주소</label>
 										<div class="col-sm-6">
 											<input type="text" class="form-control" id="addr1"
-												name="addr1" placeholder="사용자 주소" readonly value="${param.addr1 }">
+												name="addr1" placeholder="사용자 주소" readonly value="${userVo.addr1 }">
 										</div>
 										<div class="col-sm-3">
 											<button id="btnaddr" type="button" class="btn btn-default">주소 검색</button>
@@ -166,7 +171,7 @@
 										<label for="userNm" class="col-sm-3 control-label">상세주소</label>
 										<div class="col-sm-9">
 											<input type="text" class="form-control" id="addr2"
-												name="addr2" placeholder="사용자 상세주소" value="${param.addr2 }">
+												name="addr2" placeholder="사용자 상세주소" value="${userVo.addr2 }">
 										</div>
 									</div>
 
@@ -174,7 +179,7 @@
 										<label for="userNm" class="col-sm-3 control-label">우편번호</label>
 										<div class="col-sm-9">
 											<input type="text" class="form-control" id="zipcd"
-												name="zipcd" placeholder="사용자 우편번호" readonly value="${param.zipcd }">
+												name="zipcd" placeholder="사용자 우편번호" readonly value="${userVo.zipcd }">
 										</div>
 									</div>
 
@@ -190,7 +195,7 @@
 									<br><br><br><br>
 									<div class="form-group">
 										<div class="col-sm-offset-2 col-sm-10">
-											<button id="userRegBtn" type="button" class="btn btn-default">회원가입</button>
+											<button id="userRegBtn" type="button" class="btn btn-default">수정 완료</button>
 										</div>
 									</div>
 								</form>

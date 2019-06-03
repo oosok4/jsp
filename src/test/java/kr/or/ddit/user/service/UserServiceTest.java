@@ -132,8 +132,7 @@ public class UserServiceTest {
 		
 		/***Then***/
 		logger.debug("lprodList : {}",lprodList);
-
-		
 	}
+	
 
 }

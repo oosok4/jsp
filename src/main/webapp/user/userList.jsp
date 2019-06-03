@@ -2,7 +2,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
 <!DOCTYPE html>
@@ -15,26 +15,26 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <link rel="icon" href="../../favicon.ico">
- 
+
 
 
 <title>Jsp</title>
 
 
-<%@include file="/common/basicLib.jsp" %>
+<%@include file="/common/basicLib.jsp"%>
 </head>
 
 <body>
 
 
 	<!--  header -->
-	<%@include file="/common/header.jsp" %>
+	<%@include file="/common/header.jsp"%>
 	<div class="container-fluid">
 		<div class="row">
 
-<!-- 				left -->
-<%@include file="/common/left.jsp" %>
-			
+			<!-- 				left -->
+			<%@include file="/common/left.jsp"%>
+
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
 
@@ -54,16 +54,17 @@
 											<th>등록일시</th>
 										</tr>
 										<%
-											List<UserVo> userList = (List<UserVo>) request.getAttribute("userList");
+											List<UserVo> userList = (List<UserVo>) request
+													.getAttribute("userList");
 										%>
-					<!-- 	userList의 데이터를 한건씩 조회해서 pageContext.setAttribute("user",vo); -->
+										<!-- 	userList의 데이터를 한건씩 조회해서 pageContext.setAttribute("user",vo); -->
 										<c:forEach items="${userList }" var="user">
 											<tr>
-											<td>${user.userId }</td>
-											<td>${user.name }</td>
-											<td>${user.alias }</td>
-											<td></td>
-										</tr>
+												<td>${user.userId }</td>
+												<td>${user.name }</td>
+												<td>${user.alias }</td>
+												<td></td>
+											</tr>
 										</c:forEach>
 									</table>
 								</div>
