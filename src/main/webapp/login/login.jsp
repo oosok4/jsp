@@ -109,7 +109,7 @@
 				id="userId" name="userId" class="form-control"
 				placeholder="user id :" required value="${param.userId}"> <label
 				for="inputPassword" class="sr-only">Password</label> <input
-				type="password" id="password" name="password" value="Fbrown1234"
+				type="password" id="password" name="password" value="brown1234"
 				class="form-control" placeholder="Password" required>
 
 			<div class="checkbox">
