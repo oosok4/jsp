@@ -4,7 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -56,7 +56,46 @@
 		
 		$("#userRegBtn").on("click",function(){
 			//유효성 체크
-			
+			if($("#userId").val().trim().length == 0){
+	    		alert("아이디를 입력해주세요.");
+	    		$("#userId").val('');
+	    		$("#userId").focus();
+	    		return;
+	    	}
+	    	if($("#pass").val().trim().length == 0){
+	    		alert("비밀번호를 입력해주세요.");
+	    		$("#pass").val('');
+	    		$("#pass").focus();
+	    		return;
+	    	}
+	    	if($("#name").val().trim().length == 0){
+	    		alert("이름을 입력해주세요.");
+	    		$("#name").val('');
+	    		$("#name").focus();
+	    		return;
+	    	}
+	    	if($("#alias").val().trim().length == 0){
+	    		alert("별명을 입력해주세요.");
+	    		$("#alias").val('');
+	    		$("#alias").focus();
+	    		return;
+	    	}
+	    	if($("#birth").val().trim().length == 0){
+	    		alert("생일을 입력해주세요.");
+	    		$("#birth").val('');
+	    		$("#birth").focus();
+	    		return;
+	    	}
+	    	if($("#zipcd").val().trim().length == 0){
+	    		alert("주소를 입력해주세요.");
+	    		return;
+	    	}
+	    	if($("#addr2").val().trim().length == 0){
+	    		alert("상세주소를 입력해주세요.");
+	    		$("#addr2").val('');
+	    		$("#addr2").focus();
+	    		return;
+	    	}
 			//여기까지 도달하면 유효성 검사 완료(submit)
 			$("#frm").submit();
 		});
@@ -110,19 +149,12 @@
 							<div class="col-sm-8 blog-main">
 								<h2 class="sub-header">회원정보 수정</h2>
 
-								<form id="frm" class="form-horizontal" role="form" action="${pageContext.request.contextPath }/userAdmit"
+								<form id="frm" class="form-horizontal" role="form" action="${pageContext.request.contextPath }/UserAdmit"
 								 method="post" enctype="multipart/form-data">
 
 									<div class="form-group">
 										<label for="userNm" class="col-sm-3 control-label">사용자
-											사진</label>
-										<div class="col-sm-8">
-											<img src="${pageContext.request.contextPath }/profile?userId=${userVo.userId}"/>  
-										</div>
-									</div>
-									<div class="form-group">
-										<label for="userNm" class="col-sm-3 control-label">사용자
-											사진</label>
+											아이디</label>
 										<div class="col-sm-8">
 											<input type="file" id="filename" name="profile" />
 										</div>
@@ -191,7 +223,7 @@
 									<div class="form-group">
 										<label for="userNm" class="col-sm-3 control-label">생일</label>
 										<div class="col-sm-9">
-											<input type="date" class="form-control" id="birth"
+											<input type="date" class="form-control" id="birth" value="<fmt:formatDate value="${user.birth}" pattern="yyyy-MM-dd"/>"
 												name="birth" placeholder="사용자 생일">
 										</div>
 									</div>

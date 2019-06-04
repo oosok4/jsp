@@ -56,13 +56,13 @@ public class UserFormController extends HttpServlet {
 
 		// 사용자 보낸 파라미터를 사용해서 UserVo 인스턴스를 만들어서
 		String userId = req.getParameter("userId");
+		String pass = req.getParameter("pass");
 		String name = req.getParameter("name");
 		String alias = req.getParameter("alias");
 		String addr1 = req.getParameter("addr1");
 		String addr2 = req.getParameter("addr2");
 		String zipcd = req.getParameter("zipcd");
 		String birth = req.getParameter("birth");
-		String pass = req.getParameter("pass");
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -74,7 +74,6 @@ public class UserFormController extends HttpServlet {
 			userVo = new UserVo(name, userId, alias, pass, addr1, addr2, zipcd,
 					sdf.parse(birth));
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		// 사용자가 입력한 userId가 이미 존재하는 userId인지 체크

@@ -22,26 +22,26 @@
 
 <title>Jsp</title>
 <style>
-	.userTr:hover{
-		cursor : pointer;
-	}
+.userTr:hover {
+	cursor: pointer;
+}
 </style>
 
 
 <%@include file="/common/basicLib.jsp"%>
 <script>
-	$(document).ready(function(){
-		$(".userTr").on("click",function(){
+	$(document).ready(function() {
+		$(".userTr").on("click", function() {
 			console.log("userTr click");
-			
+
 			var userId = $(this).find(".userId").text();
 			$("#userId").val(userId);
-			
+
 			//#frm을 이용하여 submit();
 			$("#frm").submit();
-			
+
 		});
-				
+
 	})
 </script>
 </head>
@@ -67,13 +67,14 @@
 						<div class="row">
 							<div class="col-sm-8 blog-main">
 								<h2 class="sub-header">사용자</h2>
-								
-								<form id="frm" action="${ pageContext.request.contextPath}/user" method="get">
-									<input type="hidden" id="userId" name="userId"/>								
-								
+
+								<form id="frm" action="${ pageContext.request.contextPath}/user"
+									method="get">
+									<input type="hidden" id="userId" name="userId" />
+
 								</form>
-								
-								
+
+
 								<div class="table-responsive">
 									<table class="table table-striped">
 										<tr>
@@ -99,7 +100,8 @@
 									</table>
 								</div>
 
-								<a href="${pageContext.request.contextPath }/userForm" class="btn btn-default pull-right">사용자 등록</a>
+								<a href="${pageContext.request.contextPath }/userForm"
+									class="btn btn-default pull-right">사용자 등록</a>
 
 								<!-- 사용자수 : 105건 이것부터 만들어보자.
 		페이지네이션 : 11건

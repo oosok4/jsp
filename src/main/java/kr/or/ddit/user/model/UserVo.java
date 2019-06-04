@@ -16,7 +16,7 @@ public class UserVo {
 	private String filename;
 
 	public UserVo(String name, String userId, String alias, String pass,
-			String addr1, String addr2, String zipcd, Date birth2) {
+			String addr1, String addr2, String zipcd, Date birth) {
 		super();
 		this.name = name;
 		this.userId = userId;
@@ -25,7 +25,7 @@ public class UserVo {
 		this.addr1 = addr1;
 		this.addr2 = addr2;
 		this.zipcd = zipcd;
-		this.birth = birth2;
+		this.birth = birth;
 	}
 
 	public String getBirthStr() {

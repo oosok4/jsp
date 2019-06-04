@@ -21,6 +21,7 @@ import javax.servlet.jsp.PageContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import kr.or.ddit.encrypt.encrypt.kisa.sha256.KISA_SHA256;
 import kr.or.ddit.servlet.util.partUtil;
 import kr.or.ddit.user.model.UserVo;
 import kr.or.ddit.user.service.IuserService;
@@ -52,7 +53,7 @@ public class UserAdmit extends HttpServlet {
 
       request.setAttribute("userVo", userVo);
       
-      RequestDispatcher rd = request.getRequestDispatcher("/user/userModify.jsp");
+      RequestDispatcher rd = request.getRequestDispatcher("/user/userAdmit.jsp");
       rd.forward(request, response);
    }
    
@@ -64,25 +65,33 @@ public class UserAdmit extends HttpServlet {
       
       String userId = request.getParameter("userId");
       String name = request.getParameter("name");
-      String pass = request.getParameter("pass");
       String alias = request.getParameter("alias");
       String birth = request.getParameter("birth"); // Date타입으로 바꿔줘야한다
       String zipcd = request.getParameter("zipcd");
       String addr1 = request.getParameter("addr1");
       String addr2 = request.getParameter("addr2");
       
+      //사용자가 보낸 평문 비밀번호 데이터
+      String pass = request.getParameter("pass");
+      pass  = KISA_SHA256.encrypt(pass);
+      
+      
       SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
       
       //
       UserVo userVo = null;
-      Date birth2 = null;
-	userVo = new UserVo(name, userId, alias, pass, addr1, addr2, zipcd, birth2);
+      try {
+    	  userVo = new UserVo(name, userId, alias, pass, addr1, addr2, zipcd, sdf.parse(birth));
+		
+	} catch (ParseException e) {
+		e.printStackTrace();
+	}
       
       //userModify.jsp 에서 profile이라는 name속성값을 받아옴! 
       Part profile = request.getPart("profile");
       
       //파일에 정보? 가있으면?! userVo에 담는다!
-      if(profile.getSize() != 0){
+      if(profile.getSize() > 0){
          //
          String contentDisposition = profile.getHeader("content-disposition");
          //파일명 반환 받아온다!
@@ -92,11 +101,10 @@ public class UserAdmit extends HttpServlet {
           
          String uploadPath = partUtil.getUploadPath();
          File uploadFolder = new File(uploadPath);
+         String filePath = uploadPath+File.separator+UUID.randomUUID().toString()+ext;
          
          //폴더가 존재할경우 
          if(uploadFolder.exists()){
-            String filePath = uploadPath + File.separator + UUID.randomUUID().toString() + ext;
-            
             //사진의 위치
             userVo.setPath(filePath);
             //사진 이름

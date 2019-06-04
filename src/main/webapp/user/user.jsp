@@ -61,7 +61,8 @@
 								<h2 class="sub-header">사용자 상세</h2>
 
 								<form id="frm" class="form-horizontal" role="form"
-									action="${pageContext.request.contextPath }/userAdmit">
+									action="${pageContext.request.contextPath }/UserAdmit"
+									method="get">
 
 									<div class="form-group">
 										<label for="userNm" class="col-sm-2 control-label">사용자
@@ -73,7 +74,7 @@
 									</div>
 
 									<div class="form-group">
-										<label for="userNm" class="col-sm-2 control-label">사용자아이디</label>
+										<label for="userId" class="col-sm-2 control-label">사용자아이디</label>
 										<div class="col-sm-10">
 											<label class="control-label">${userVo.userId }</label> <input
 												type="hidden" class="form-control" id="userId" name="userId"
@@ -82,7 +83,7 @@
 									</div>
 
 									<div class="form-group">
-										<label for="userNm" class="col-sm-2 control-label">사용자
+										<label for="name" class="col-sm-2 control-label">사용자
 											이름</label>
 										<div class="col-sm-10">
 											<label class="control-label">${userVo.name }</label>
@@ -90,35 +91,35 @@
 									</div>
 
 									<div class="form-group">
-										<label for="userNm" class="col-sm-2 control-label">별명</label>
+										<label for="alias" class="col-sm-2 control-label">별명</label>
 										<div class="col-sm-10">
 											<label class="control-label">${userVo.alias }</label>
 										</div>
 									</div>
 
 									<div class="form-group">
-										<label for="userNm" class="col-sm-2 control-label">주소</label>
+										<label for="addr1" class="col-sm-2 control-label">주소</label>
 										<div class="col-sm-10">
 											<label class="control-label">${userVo.addr1 }</label>
 										</div>
 									</div>
 
 									<div class="form-group">
-										<label for="userNm" class="col-sm-2 control-label">상세주소</label>
+										<label for="addr2" class="col-sm-2 control-label">상세주소</label>
 										<div class="col-sm-10">
 											<label class="control-label">${userVo.addr2 }</label>
 										</div>
 									</div>
 
 									<div class="form-group">
-										<label for="userNm" class="col-sm-2 control-label">우편번호</label>
+										<label for="zipcd" class="col-sm-2 control-label">우편번호</label>
 										<div class="col-sm-10">
 											<label class="control-label">${userVo.zipcd }</label>
 										</div>
 									</div>
 
 									<div class="form-group">
-										<label for="userNm" class="col-sm-2 control-label">생일</label>
+										<label for="birth" class="col-sm-2 control-label">생일</label>
 										<div class="col-sm-10">
 											<label class="control-label">${userVo.birth }</label>
 										</div>
