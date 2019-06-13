@@ -5,3 +5,5 @@
 	<c:param name= "query" value="강민호"/>
 </c:import>
 ${test}
+
+
