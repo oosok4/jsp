@@ -149,7 +149,7 @@ public class LoginController extends HttpServlet {
 		System.out.println(userVo);
 		if(service.getUser(userId)!=null){
 			//UserVo userVo = service.getUser(userId);
-			if(userVo.getPass().equals(encryptPassword)){
+			//if(userVo.getPass().equals(encryptPassword)){
 				
 				
 				int cookieMaxAge =0;
@@ -175,7 +175,7 @@ public class LoginController extends HttpServlet {
 				
 				RequestDispatcher rd = request.getRequestDispatcher("/main.jsp");
 				rd.forward(request, response);
-			}
+			//}
 		}else{ //아이디 혹은 비밀번호 잘못 입력. -> 다시 로그인 화면으로 이동.
 			//로그인 화면으로 이동  : localhost/jsp/login
 			// 현상황에서 /jsp/login url로 dispatch 방식으로 위임 불가
