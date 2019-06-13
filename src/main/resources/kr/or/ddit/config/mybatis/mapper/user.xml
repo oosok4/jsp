@@ -11,7 +11,7 @@
 	<select id="getUser" resultType="UserVo" parameterType
 	="String">
 		select *
-		from users where userid = #{userId}
+		from user2 where user_id = #{userId}
 	</select>
 
 	<!-- 사용자 페이지 리스트조회 -->

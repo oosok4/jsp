@@ -48,14 +48,13 @@
 								<div class="table-responsive">
 									<table class="table table-striped">
 										<tr>
-											<th>사용자 아이디(el)</th>
+											<th>사용자 아이디</th>
 											<th>사용자 이름</th>
 											<th>사용자 별명</th>
 											<th>등록일시</th>
 										</tr>
 										<%
-											List<UserVo> userList = (List<UserVo>) request
-													.getAttribute("userList");
+											List<UserVo> userList = (List<UserVo>) request.getAttribute("userList");
 										%>
 										<!-- 	userList의 데이터를 한건씩 조회해서 pageContext.setAttribute("user",vo); -->
 										<c:forEach items="${userList }" var="user">

@@ -66,9 +66,11 @@
 
 						<div class="row">
 							<div class="col-sm-8 blog-main">
+
+
 								<h2 class="sub-header">사용자</h2>
 
-								<form id="frm" action="${ pageContext.request.contextPath}/user"
+								<form id="frm" action="${pageContext.request.contextPath }/user"
 									method="get">
 									<input type="hidden" id="userId" name="userId" />
 
@@ -83,10 +85,7 @@
 											<th>사용자 별명</th>
 											<th>등록일시</th>
 										</tr>
-										<%
-											List<UserVo> userList = (List<UserVo>) request
-													.getAttribute("userList");
-										%>
+
 										<c:forEach items="${userList }" var="user" varStatus="status">
 											<tr class="userTr" data-userid="${user.userId } data-name=">
 												<td class="userId">${user.userId }</td>
