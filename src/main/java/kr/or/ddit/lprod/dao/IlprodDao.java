@@ -21,5 +21,7 @@ public interface IlprodDao {
 	
 	int lprodCnt();
 	
+	
+	
 
 }
