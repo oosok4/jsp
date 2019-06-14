@@ -12,7 +12,7 @@
 
 <body>
 lang : ${lang }
-<form action="${pageContext.request.contextPath}/selectLocale" method="post">
+<form action="${cp}/selectLocale" method="post">
 	<h2>select locale</h2>
 	
 	<select id="langStr" name="lang" onchange="this.form.submit()">

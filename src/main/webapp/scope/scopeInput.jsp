@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h2>jsp scope 테스트</h2>
-	<form action="${pageContext.request.contextPath}/scope/scopeReceive.jsp" method="post">
+	<form action="${cp}/scope/scopeReceive.jsp" method="post">
 	page <input type="text" name = "pageParam" value="pageValue">
 	request <input type="text" name = "requestParam" value="requestValue">
 	session <input type="text" name = "sessionParam" value="sessionValue">

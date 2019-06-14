@@ -51,7 +51,6 @@ public class UserFormController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		req.setCharacterEncoding("UTF-8");
 		logger.debug("userForm doPost");
 
 		// 사용자 보낸 파라미터를 사용해서 UserVo 인스턴스를 만들어서

@@ -149,7 +149,7 @@
 							<div class="col-sm-8 blog-main">
 								<h2 class="sub-header">회원정보 수정</h2>
 
-								<form id="frm" class="form-horizontal" role="form" action="${pageContext.request.contextPath }/UserAdmit"
+								<form id="frm" class="form-horizontal" role="form" action="${cp }/UserAdmit"
 								 method="post" enctype="multipart/form-data">
 
 									<div class="form-group">

@@ -27,9 +27,7 @@ public class LoggingFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
 		logger.debug("LoggingFilter doFilter");
-		// 전처리
 		
-		//HttpServletRequest req = (HttpServletRequest)request;
 		String uri = ((HttpServletRequest)request).getRequestURI();
 		logger.debug("LoggingFilter doFilter 전처리 : {}" , uri);
 		

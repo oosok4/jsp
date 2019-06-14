@@ -31,9 +31,10 @@
 <!-- 		<option>sally</option> -->
 <!-- 		<option>moon</option> -->
 <!-- 	</select> -->
-	6. lprod : <br>
-	<ct:lprod lprod="${select }"></ct:lprod><br>
-
+	6. prod : <br>
+	<ct:lprod prod_lgu="P302"></ct:lprod>
+	
+	
 	
 	
 </body>

@@ -61,7 +61,6 @@ public class UserAdmit extends HttpServlet {
       logger.debug("Modify doPost");
       
       
-      request.setCharacterEncoding("UTF-8");
       
       String userId = request.getParameter("userId");
       String name = request.getParameter("name");

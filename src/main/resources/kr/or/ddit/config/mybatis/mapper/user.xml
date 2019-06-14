@@ -8,10 +8,9 @@
 		userid
 	</select>
 
-	<select id="getUser" resultType="UserVo" parameterType
-	="String">
+	<select id="getUser" resultType="UserVo" parameterType="String">
 		select *
-		from user2 where user_id = #{userId}
+		from users where userid = #{userId}
 	</select>
 
 	<!-- 사용자 페이지 리스트조회 -->

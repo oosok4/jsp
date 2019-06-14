@@ -32,14 +32,13 @@
 			%>
 			
 			<%=userName %> <sbr>
-			el : ${USER_INFO}
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="#">Dashboard</a></li>
 				<li><a href="#">Settings</a></li>
 				<li><a href="#">Profile</a></li>
-				<li><a href="${pageContext.request.contextPath}/logout">Logout</a></li>
+				<li><a href="${cp}/logout">Logout</a></li>
 			</ul>
 			<form class="navbar-form navbar-right">
 				<input type="text" class="form-control" placeholder="Search...">

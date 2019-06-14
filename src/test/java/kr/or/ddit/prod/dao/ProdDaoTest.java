@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.util.List;
 
+import kr.or.ddit.prod.model.ProdVo;
 import kr.or.ddit.user.dao.IuserDao;
 import kr.or.ddit.user.dao.UserDaoImpl;
 
@@ -33,9 +34,9 @@ public class ProdDaoTest {
 	@Test
 	public void prodListtest() {
 		/***Given***/
-		
+		String prod_lgu = "P201";
 		/***When***/
-		List<String> lprodList = dao.prodList();
+		List<ProdVo> lprodList = dao.prodList(prod_lgu);
 		/***Then***/
 		logger.debug("lprodList : {}",lprodList);
 

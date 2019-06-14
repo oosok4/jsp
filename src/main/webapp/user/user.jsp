@@ -61,7 +61,7 @@
 								<h2 class="sub-header">사용자 상세</h2>
 
 								<form id="frm" class="form-horizontal" role="form"
-									action="${pageContext.request.contextPath }/UserAdmit"
+									action="${cp }/UserAdmit"
 									method="get">
 
 									<div class="form-group">
@@ -69,7 +69,7 @@
 											사진</label>
 										<div class="col-sm-10">
 											<img
-												src="${pageContext.request.contextPath }/profile?userId=${userVo.userId}" />
+												src="${cp }/profile?userId=${userVo.userId}" />
 										</div>
 									</div>
 

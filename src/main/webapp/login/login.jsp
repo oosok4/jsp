@@ -13,7 +13,7 @@
 <link rel="icon" href="../../favicon.ico">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/js.cookie.js"></script>
+<script src="${cp}/js/js.cookie.js"></script>
 </head>
 <script>
 	$(document).ready(function() {
@@ -87,11 +87,11 @@
 
 <!-- Bootstrap core CSS -->
 <link
-	href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css"
+	href="${cp}/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
 
 <!-- Custom styles for this template -->
-<link href="${pageContext.request.contextPath}/css/signin.css"
+<link href="${cp}/css/signin.css"
 	rel="stylesheet">
 
 
@@ -102,11 +102,11 @@
 <body>
 	<div class="container">
 		<form id="frm" class="form-signin"
-			action="${pageContext.request.contextPath }/login" method="post">
-			<h2 class="form-signin-heading">Please sign in ${requestMap }</h2>
+			action="${cp }/login" method="post">
+			<h2 class="form-signin-heading">Please sign in </h2>
 
 			<label for="userId" class="sr-only">userId</label> <input type="text"
-				id="userId" name="userId" class="form-control"
+				id="userId" name="userId" value="brown" class="form-control"
 				placeholder="user id :" required value="${param.userId}"> <label
 				for="inputPassword" class="sr-only">Password</label> <input
 				type="password" id="password" name="password" value="brown1234"

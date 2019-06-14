@@ -70,7 +70,7 @@
 
 								<h2 class="sub-header">사용자</h2>
 
-								<form id="frm" action="${pageContext.request.contextPath }/user"
+								<form id="frm" action="${cp }/user"
 									method="get">
 									<input type="hidden" id="userId" name="userId" />
 
@@ -99,7 +99,7 @@
 									</table>
 								</div>
 
-								<a href="${pageContext.request.contextPath }/userForm"
+								<a href="${cp }/userForm"
 									class="btn btn-default pull-right">사용자 등록</a>
 
 								<!-- 사용자수 : 105건 이것부터 만들어보자.
@@ -117,7 +117,7 @@
 										<li class="disabled"><span>«</span></li>
 										<%} else {%>
 										<li><a
-											href="${pageContext.request.contextPath}/userPagingList?page=<%=pageVo.getPage() - 1%>&pageSize=<%=pageVo.getPageSize()%>">«</a>
+											href="${cp}/userPagingList?page=<%=pageVo.getPage() - 1%>&pageSize=<%=pageVo.getPageSize()%>">«</a>
 										</li>
 										<%}%>
 										-->
@@ -127,7 +127,7 @@
 											</c:when>
 											<c:otherwise>
 												<li><a
-													href="${pageContext.request.contextPath}/userPagingList?page=${pageVo.page - 1}&pageSize=${pageVo.pageSize } ">«</a></li>
+													href="${cp}/userPagingList?page=${pageVo.page - 1}&pageSize=${pageVo.pageSize } ">«</a></li>
 											</c:otherwise>
 
 										</c:choose>
@@ -144,7 +144,7 @@
 										<li class="active"><span> <%=i%></span></li>
 										<%} else {%>
 										<li><a
-											href="${pageContext.request.contextPath}/userPagingList?page=<%=i%>&pageSize=<%=pageVo.getPageSize()%>"><%=i%></a>
+											href="${cp}/userPagingList?page=<%=i%>&pageSize=<%=pageVo.getPageSize()%>"><%=i%></a>
 										</li>
 										<%}
 			}%>
@@ -157,7 +157,7 @@
 												</c:when>
 												<c:otherwise>
 													<li><a
-														href="${pageContext.request.contextPath }/userPagingList?page=${i }&pageSize=${pageVo.pageSize }">${i }</a>
+														href="${cp }/userPagingList?page=${i }&pageSize=${pageVo.pageSize }">${i }</a>
 													</li>
 												</c:otherwise>
 											</c:choose>
@@ -168,7 +168,7 @@
 										<li class="disabled"><span>»</span></li>
 										<%} else {%>
 										<li>
-										<a href="${pageContext.request.contextPath}/userPagingList?page=<%=paginationSize + 1%>&pageSize=<%=paginationSize%>">»</a>
+										<a href="${cp}/userPagingList?page=<%=paginationSize + 1%>&pageSize=<%=paginationSize%>">»</a>
 										</li>
 										<%}%>
 										-->
@@ -178,7 +178,7 @@
 											</c:when>
 											<c:otherwise>
 												<li><a
-													href="${pageContext.request.contextPath}/userPagingList?page=${pageVo.page + 1}&pageSize=${pageVo.pageSize }">»</a></li>
+													href="${cp}/userPagingList?page=${pageVo.page + 1}&pageSize=${pageVo.pageSize }">»</a></li>
 											</c:otherwise>
 
 										</c:choose>

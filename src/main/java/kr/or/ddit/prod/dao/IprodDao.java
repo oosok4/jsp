@@ -14,6 +14,6 @@ public interface IprodDao {
 	* @return
 	* Method 설명 :
 	 */
-	List<String> prodList();
+	List<ProdVo> prodList(String prod_lgu);
 
 }

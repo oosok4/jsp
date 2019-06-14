@@ -12,10 +12,10 @@ public class ProdDaoImpl implements IprodDao {
 	
 
 	@Override
-	public List<String> prodList() {
+	public List<ProdVo> prodList(String prod_lgu) {
 		
 		SqlSession sqlSession = MyBatisUtil.getSqlSession();
-		List<String> lprodList = sqlSession.selectList("prod.getAllLprod");
+		List<ProdVo> lprodList = sqlSession.selectList("prod.getAllLprod",prod_lgu);
 		sqlSession.close();
 		
 		return lprodList;
