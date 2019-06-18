@@ -17,6 +17,7 @@ public class ARIAUtil {
 	public static String ariaEncrypt(String str, String privateKey) 
 			throws InvalidKeyException, UnsupportedEncodingException {
 		if (str==null || str.equals("")) return "";
+		
 
 		byte[] p;
 		byte[] c;

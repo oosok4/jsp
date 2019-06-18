@@ -13,8 +13,7 @@ public class KISA_SHA256 {
 	private static int ENDIAN = Common.BIG_ENDIAN;
 
 	private static final int SHA256_DIGEST_BLOCKLEN = 64;
-	private static final int SHA256_DIGEST_VALUELEN = 32;
-
+	private static final int SHA256_DIGEST_VALUELEN = 32; 
 	public static String encrypt(String plainText) {
 		StringBuffer encryptStringBuffer = new StringBuffer();
 		byte[] encryptByte = new byte[32];	
