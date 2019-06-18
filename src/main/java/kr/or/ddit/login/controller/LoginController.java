@@ -62,6 +62,8 @@ public class LoginController extends HttpServlet {
 		
 		
 		
+		
+		
 		for(Cookie cookie : request.getCookies()){
 			logger.debug("cookie : {}, {}",cookie,cookie.getValue());
 		}

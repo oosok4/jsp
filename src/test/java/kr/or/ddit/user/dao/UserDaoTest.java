@@ -73,17 +73,16 @@ public class UserDaoTest {
 	 */
 	@Test
 	public void userListTest() {
-		
-		/***Given***/
-		
 
-		/***When***/
-		List<UserVo> userList = userDao.userList();
+		int i = 2;
+        int j = 5;
+        int k = 3;
 		
-		/***Then***/
-		assertEquals("brown", userList.get(0).getUserId());
-		assertEquals(105, userList.size());
-		logger.debug("userList : {}",userList);
+		int[] array;
+		array = new int[]{10,9,8,7,6};
+		
+		
+		
 
 		
 	}
