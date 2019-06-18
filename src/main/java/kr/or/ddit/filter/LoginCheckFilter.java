@@ -37,7 +37,7 @@ public class LoginCheckFilter implements Filter {
 		// 세션이 없어도 처리가 되어야 되는 것들 : /login, .jsp, .css, .png, gif ==> /js, /css,
 		// /img
 		if (uri.startsWith("/login") || uri.startsWith("/js")
-				|| uri.startsWith("/css") || uri.startsWith("/img") || uri.startsWith("bootstrap"))
+				|| uri.startsWith("/css") || uri.startsWith("/img") || uri.startsWith("/bootstrap"))
 			chain.doFilter(request, response);
 		// session을 체크해야 하는 대상들
 		else if (req.getSession().getAttribute("USER_INFO") != null) {
